@@ -19,24 +19,36 @@ GPIO.setup(volup,GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(voldown,GPIO.IN, pull_up_down=GPIO.PUD_UP)
 t=pipes.Template()
 #t.append('tr a-z A-Z','--')
-handle=t.open('/home/pi/.config/pianobar/ctl','w')
 ch3status=True
-burp=open("/home/pi/dummy","w")
-handle.write("n")
+ch2status=True
+combo1=False
 def main_loop ():
     global ch3status
-    input = GPIO.input(ch3)
-    if input == False:
-        if ch3status != input:
-            ch3status=input
+    global ch2status
+    input3 = GPIO.input(ch3)
+    input2 = GPIO.input(ch2)
+    if input3 == False:
+        if ch3status != input3:
+            handle=t.open('/home/pi/.config/pianobar/ctl','w')
             handle.write('p')
-            burp.write("asdflkjasdlaskjdas")
-
+            handle.close()
+    ch3status=input3
+    if input2 == False:
+        if ch2status != input2:
+            handle=t.open('/home/pi/.config/pianobar/ctl','w')
+            handle.write('n')
+            handle.close()
+    ch2status=input2
+    if ch2status==False:
+        if ch2status==ch3status:
+            handle=t.open('/home/pi/.config/pianobar/ctl','w')
+            handle.write('s')
+            handle.write('10')
+            handle.close()
 
 while True:
     try:
         main_loop()
     except KeyboardInterrupt:
-        handle.close()
         process.terminate()
         print "Good bye"
