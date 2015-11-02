@@ -53,7 +53,39 @@ def main_loop ():
     ch3status=input3
     if ch2status != ch3status
         combo1=False
+        
+    if combo2==False:
+        if ch1status==False and ch3status==False:
+            combo2=True
+            write_ctl(["s10","\n"])
+            time.sleep(0.05)
+    ch1status=input1
+    ch3status=input3
+    if ch1status != ch3status
+        combo1=False
 
+    if combo3==False:
+        if ch2status==False and ch1status==False:
+            combo3=True
+            write_ctl(["s10","\n"])
+            time.sleep(0.05)
+    ch2status=input2
+    ch1status=input1
+    if ch2status != ch1status
+        combo3=False
+        
+    if combo4==False:
+        if ch2status==False and ch3status==False and ch1status=False:
+            combo4=True
+            write_ctl(["s10","\n"])
+            time.sleep(0.05)
+    ch2status=input2
+    ch3status=input3
+    ch1status=input1
+    if ch2status != ch3status or ch2status != ch1status or ch3status != ch1status:
+        combo4=False    
+        
+        
 while True:
     try:
         main_loop()
