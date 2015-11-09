@@ -55,7 +55,6 @@ def main_loop ():
     if combo1==False:
         if input2==False and input3==False:
             combo1=True
-            print combo1
             write_ctl(["s10","\n"])
             time.sleep(0.05)
     ch2status=input2
@@ -71,7 +70,7 @@ def main_loop ():
     ch1status=input1
     ch3status=input3
     if ch1status != ch3status:
-        combo1=False
+        combo2=False
 
     if combo3==False:
         if ch2status==False and ch1status==False:
